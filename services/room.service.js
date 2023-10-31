@@ -29,6 +29,7 @@ class RoomService {
             }, { transaction });
 
             await transaction.commit();
+            logger.log('Room Created Successfully')
             return room;
         } catch (err) {
             await transaction.rollback();
@@ -71,6 +72,7 @@ class RoomService {
             const updatedRoom = await room.update(data, { transaction });
 
             await transaction.commit();
+            logger.log('Room Udpdation Successful')
             return updatedRoom;
         } catch (err) {
             await transaction.rollback();
@@ -96,6 +98,7 @@ class RoomService {
             await room.destroy({ transaction });
 
             await transaction.commit();
+            logger.log('Room Cancellation Successful')
             return room;
         } catch (err) {
             await transaction.rollback();

@@ -29,6 +29,7 @@ class ReservationService {
             }, { transaction });
 
             await transaction.commit();
+            logger.log('Reservation Done Successfully')
             return reservation;
         } catch (err) {
             await transaction.rollback();
@@ -74,6 +75,7 @@ class ReservationService {
             const updatedReservation = await reservation.update(data, { transaction });
 
             await transaction.commit();
+            logger.log('Reservation Updated Sucessfully')
             return updatedReservation;
         } catch (err) {
             await transaction.rollback();
@@ -100,6 +102,7 @@ class ReservationService {
             await reservation.destroy({ transaction });
 
             await transaction.commit();
+            logger.log('Reservation Cancelled Successfully')
             return reservation;
         } catch (err) {
             await transaction.rollback();

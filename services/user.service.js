@@ -11,6 +11,7 @@ class UserService {
     async createUser(data) {
         try {
             const user = await User.create(data);
+            logger.log('User Successfully Created')
             return user.toJSON();
         } catch (err) {
             // Log the error
@@ -57,6 +58,7 @@ class UserService {
                 throw new Error('User not found');
             }
             await user.update(data);
+            logger.log('User Updated Successfully')
             return user.toJSON();
         } catch (err) {
             // Log the error
@@ -80,6 +82,7 @@ class UserService {
                 throw new Error('User not found');
             }
             await user.destroy();
+            logger.log('User Removed Successfully')
             return user.toJSON();
         } catch (err) {
             // Log the error

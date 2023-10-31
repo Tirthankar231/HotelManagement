@@ -32,6 +32,8 @@ class AuthenticationService {
 
             const token = this.generateToken(user);
 
+            logger.log('User logged in successfully'); // Logging successful login
+
             return token;
         } catch (err) {
             logger.error(err.message);
