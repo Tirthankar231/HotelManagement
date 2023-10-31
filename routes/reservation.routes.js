@@ -2,17 +2,18 @@ import { Router } from 'express';
 import reservationController from '../controllers/reservation.controller.js';
 import { authenticateToken } from '../middlewares/authentication.js';
 import { authorizeUser, authorizeAdmin } from '../middlewares/authorisation.js'
+import { reservationSchema } from '../middlewares/apiParamsValidator.js';
 
 const router = new Router();
 
 // Create a new reservation
-router.post('/createReservations', authenticateToken, authorizeAdmin, reservationController.create);
+router.post('/createReservations', authenticateToken, authorizeAdmin, reservationSchema.validate, reservationController.create);
 
 // Get a specific reservation by ID
 router.get('/getReservationsById/:id', authenticateToken, authorizeUser, reservationController.getById);
 
 // Update a specific reservation by ID
-router.put('/updateReservations/:id', authenticateToken, authorizeAdmin, reservationController.update);
+router.put('/updateReservations/:id', authenticateToken, authorizeAdmin, reservationSchema.validate, reservationController.update);
 
 // Delete a specific reservation by ID
 router.delete('/cancelReservations/:id', authenticateToken, authorizeAdmin, reservationController.delete);
