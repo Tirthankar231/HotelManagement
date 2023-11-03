@@ -21,6 +21,14 @@ const Reservation = sequelize.define('Reservation', {
     }
 }, {
     freezeTableName: true,
+    indexes: [
+        {
+            fields: ['checkInDate'], // Add an index on the 'checkInDate' field
+        },
+        {
+            fields: ['checkOutDate'], // Add an index on the 'checkOutDate' field
+        }
+    ]
 });
 
 Reservation.associate = function (models) {
