@@ -28,6 +28,14 @@ const Hotel = sequelize.define('Hotel', {
     }
 }, {
     freezeTableName: true,
+    indexes: [
+        {
+            fields: ['name'], // Add an index on the 'name' field
+        },
+        {
+            fields: ['city', 'state'], // Add an index on 'city' and 'state' fields together
+        }
+    ]
 });
 
 Hotel.associate = function (models) {
