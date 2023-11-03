@@ -1,6 +1,8 @@
 import Reservation from '../models/on-call/reservation.model.js';
 import sequelize from '../config/sequelize.js';
 import logger from '../lib/logger/index.js';
+import Room from '../models/on-call/room.model.js';
+import Hotel from '../models/on-call/hotel.model.js';
 
 class ReservationService {
     /**
@@ -124,7 +126,7 @@ class ReservationService {
         try {
             const reservations = await Reservation.findAll({
                 where: {},
-                //include: [{ model: Room }, { model: User }],
+                include: [{ model: Room }, { model: Hotel }],
                 offset: offset, limit: limit
             });
             return reservations;
