@@ -1,6 +1,7 @@
 import Room from '../models/on-call/room.model.js';
 import sequelize from '../config/sequelize.js';
 import logger from '../lib/logger/index.js';
+import Hotel from '../models/on-call/hotel.model.js';
 
 class RoomService {
     /**
@@ -116,6 +117,7 @@ class RoomService {
         const { offset, limit } = params;
         const rooms = await Room.findAll({
             where: {},
+            include: { model: Hotel },
             offset: offset, limit: limit
         });
         return rooms;
