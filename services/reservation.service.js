@@ -125,7 +125,11 @@ class ReservationService {
         const { offset, limit } = params;
         try {
             const reservations = await Reservation.findAll({
-                where: {},
+                where: {
+                    checkInDate: checkInDate,
+                    checkOutDate: checkOutDate,
+                    totalAmount: totalAmount
+                },
                 include: [{ model: Room }, { model: Hotel }],
                 offset: offset, limit: limit
             });

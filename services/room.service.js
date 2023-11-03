@@ -116,7 +116,10 @@ class RoomService {
     async list(params) {
         const { offset, limit } = params;
         const rooms = await Room.findAll({
-            where: {},
+            where: {
+                type: type,
+                price: price
+            },
             include: { model: Hotel },
             offset: offset, limit: limit
         });
