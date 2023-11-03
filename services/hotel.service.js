@@ -37,6 +37,7 @@ class HotelService {
             const {offset, limit} = params;
             const hotels = await Hotel.findAll({
                 where: {},
+                include: [{ model: Room}, {model: Reservation}],
                 offset: offset, limit: limit
             });
             return hotels;
